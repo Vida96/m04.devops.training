@@ -21,7 +21,9 @@ blocks:
           commands:
             - checkout
             - cd 2-docker-build
-            - docker compose up --build
+            - docker build -t myapp .
             - 'docker tag myapp vida96/myapp:latest'
+            - docker login -u vida96
+            - 'docker push vida96/myapp:latest'
       secrets:
         - name: DockerVida
