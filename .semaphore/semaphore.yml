@@ -21,9 +21,9 @@ blocks:
           commands:
             - checkout
             - cd 2-docker-build
-            - docker build -t myapp .
-            - 'docker tag myapp $DOCKER_USERNAME/myapp:latest'
+            - 'docker build -t myapp:${SEMAPHORE_GIT_SHA} .'
+            - 'docker tag myapp ${SEMAPHORE_WORKFLOW_ID}-${DOCKER_USERNAME}/myapp:latest'
             - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            - 'docker push $DOCKER_USERNAME/myapp:latest'
+            - 'docker push ${SEMAPHORE_WORKFLOW_ID}-${DOCKER_USERNAME}/myapp:latest'
       secrets:
         - name: DockerVida
