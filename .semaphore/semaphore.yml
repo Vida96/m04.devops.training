@@ -22,8 +22,8 @@ blocks:
             - checkout
             - cd 2-docker-build
             - docker build -t myapp .
-            - 'docker tag myapp vida96/myapp:latest'
-            - docker login -u vida96
-            - 'docker push vida96/myapp:latest'
+            - 'docker tag myapp $DOCKER_USERNAME/myapp:latest'
+            - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            - 'docker push $DOCKER_USERNAME/myapp:latest'
       secrets:
         - name: DockerVida
