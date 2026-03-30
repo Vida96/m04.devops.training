@@ -13,12 +13,15 @@ auto_cancel:
   queued:
     when: branch = 'main'
 blocks:
-  - name: "\U0001F9EA Test"
+  - name: Docker
     dependencies: []
     task:
       jobs:
-        - name: "\U0001F7E2 Run Tests"
+        - name: Run Docker
           commands:
-            - cd 4-docker-compose
+            - checkout
+            - cd 2-docker-build
             - docker compose up --build
             - 'docker tag myapp vida96/myapp:latest'
+      secrets:
+        - name: DockerVida
